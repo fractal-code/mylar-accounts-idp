@@ -1,5 +1,7 @@
 Package.describe({
-  summary: "Login service for IDP accounts"
+    summary: "Login service for IDP accounts",
+    name: "mylar:accounts-idp",
+    git: "https://github.com/gliesesoftware/mylar-accounts-idp.git"
 });
 
 Package.onUse(function (api) {
