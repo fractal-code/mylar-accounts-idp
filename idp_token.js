@@ -15,7 +15,7 @@ if (match_token){
     Session.set("tmp_account_token", match_token[1]);
 }
 
-Deps.autorun(function(){
+Tracker.autorun(function(){
     var token = Session.get("tmp_account_token");
     var ptoken = Session.get("account_token");
     

@@ -6,7 +6,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-    api.use(['accounts-base', 'accounts-password', 'mylar:basic-crypto', 'srp'], ['client', 'server']);
+    api.use(['accounts-base', 'accounts-password', 'tracker', 'mylar:basic-crypto'], ['client', 'server']);
     api.use('mylar:principal', 'client');
 
     api.addFiles('accounts_common.js', ['client', 'server']);
