@@ -7,7 +7,7 @@ Package.describe({
 
 Package.onUse(function (api) {
     api.use(['accounts-base', 'accounts-password', 'tracker', 'mongo', 'session', 'mylar:basic-crypto'], ['client', 'server']);
-    api.use('mylar:principal', 'client');
+    api.use(['email', 'mylar:principal'], 'client');
 
     api.addFiles('accounts_common.js', ['client', 'server']);
     api.addFiles('idp_client.js', ['client', 'server']);
