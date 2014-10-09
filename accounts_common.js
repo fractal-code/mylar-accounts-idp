@@ -1,1 +1,1 @@
-Tokens = new Meteor.Collection("tokens");
+Tokens = new Mongo.Collection("tokens");
