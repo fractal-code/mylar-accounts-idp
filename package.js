@@ -6,8 +6,10 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-    api.use(['accounts-base', 'accounts-password', 'tracker', 'mongo', 'session', 'mylar:basic-crypto'], ['client', 'server']);
-    api.use(['email', 'mylar:principal'], 'client');
+    api.versionsFrom('METEOR@0.9.1');
+
+    api.use(['accounts-base', 'accounts-password', 'tracker', 'mongo', 'session', 'mylar:basic-crypto@0.1.0'], ['client', 'server']);
+    api.use(['email', 'mylar:principal@0.1.3'], 'client');
 
     api.addFiles('accounts_common.js', ['client', 'server']);
     api.addFiles('idp_client.js', ['client', 'server']);
