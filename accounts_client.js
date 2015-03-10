@@ -38,10 +38,10 @@ Accounts.attachMylarKeysToExistingUser = function (password, callback) {
     if (!usr) throw new Error('User needs to be logged in to receive crypto keys');
 
     if (usr && usr._princ_name && usr._pk && usr._wrap_privkey) {
-        throw new Error('wont give user new keys, already has')
+        throw new Error('wont give user new keys, already has');
     }
 
-    var _id = Meteor.userId()
+    var _id = Meteor.userId();
 
     Principal.create('user', _id, null, function (uprinc) {
         var ukeys = serialize_keys(uprinc.keys);
@@ -53,8 +53,8 @@ Accounts.attachMylarKeysToExistingUser = function (password, callback) {
                 _wrap_privkey: sjcl.encrypt(password, ukeys)
             }},
             function () {
-                callback && callback();
-            })
+                if (callback) callback();
+            });
     });
 };
 
@@ -107,7 +107,7 @@ Accounts.setUserPassword = function (email, password, cb) {
         });
     });
 
-}
+};
 
 
 Accounts.createUserWithToken = function (email, profile, callback) {
@@ -116,7 +116,7 @@ Accounts.createUserWithToken = function (email, profile, callback) {
     }
 
     Meteor.call("createOtherUser", email, profile, callback);
-}
+};
 
 
 function user_exists(email, cb) {
