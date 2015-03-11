@@ -38,7 +38,8 @@ Accounts.attachMylarKeysToExistingUser = function (password, callback) {
     if (!usr) throw new Error('User needs to be logged in to receive crypto keys');
 
     if (usr && usr._princ_name && usr._pk && usr._wrap_privkey) {
-        throw new Error('wont give user new keys, already has');
+        console.log('wont give user new keys, already has');
+        if (callback) callback();
     }
 
     var _id = Meteor.userId();
