@@ -39,17 +39,17 @@ Accounts.attachMylarKeysToExistingUser = function (password, callback) {
 
     if (usr && usr._princ_name && usr._pk && usr._wrap_privkey) {
         console.log('wont give user new keys, already has');
-        if (callback) callback();
+        var keys = sjcl.decrypt(password, usr._wrap_privkey);
+        Principal.set_current_user_keys(keys, usr._id);
+        return (callback) && callback();
     }
 
-    var _id = Meteor.userId();
-
-    Principal.create('user', _id, null, function (uprinc) {
+    Principal.create('user', usr._id, null, function (uprinc) {
         var ukeys = serialize_keys(uprinc.keys);
 
-        Principal.set_current_user_keys(ukeys, _id);
-        Meteor.users.update(_id, {$set: {
-                _princ_name: _id,
+        Principal.set_current_user_keys(ukeys, usr._id);
+        Meteor.users.update(usr._id, {$set: {
+                _princ_name: usr._id,
                 _pk: serialize_public(uprinc.keys),
                 _wrap_privkey: sjcl.encrypt(password, ukeys)
             }},
